@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Details - Quiz Buddy</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(to bottom, #70037d, black);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            color: #20c997;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+
+        .table {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .header {
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            Quiz Details
+        </div>
+
+        <!-- Quiz Info -->
+        <div class="card">
+            <h2 id="quizTitle">Quiz Title</h2>
+            <p><strong>Date Taken:</strong> <span id="quizDate">--</span></p>
+            <p><strong>Score:</strong> <span id="quizScore">--</span></p>
+            <p><strong>Time Spent:</strong> <span id="quizTime">--</span></p>
+        </div>
+
+        <!-- Performance Details -->
+        <div class="card">
+            <h2>Performance Breakdown</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Correct</th>
+                        <th>Wrong</th>
+                        <th>Total Questions</th>
+                    </tr>
+                </thead>
+                <tbody id="performanceTable">
+                    <!-- Data will be dynamically loaded -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Back to My Quizzes -->
+        <div class="text-center mt-4">
+            <a href="my-quizzes.html" class="btn-back">Back to My Quizzes</a>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Simulated backend data
+        const quizzes = {
+            1: {
+                title: "Java Basics Quiz",
+                date: "Nov 25, 2024",
+                score: "85%",
+                timeSpent: "15 minutes",
+                performance: [
+                    { category: "Syntax", correct: 5, wrong: 1, total: 6 },
+                    { category: "Loops", correct: 4, wrong: 2, total: 6 },
+                    { category: "OOP", correct: 6, wrong: 0, total: 6 },
+                ],
+            },
+            2: {
+                title: "Python Intermediate Quiz",
+                date: "Nov 28, 2024",
+                score: "90%",
+                timeSpent: "20 minutes",
+                performance: [
+                    { category: "Data Types", correct: 6, wrong: 0, total: 6 },
+                    { category: "Functions", correct: 5, wrong: 1, total: 6 },
+                    { category: "Classes", correct: 4, wrong: 2, total: 6 },
+                ],
+            },
+            3: {
+                title: "JavaScript Advanced Quiz",
+                date: "Dec 1, 2024",
+                score: "80%",
+                timeSpent: "18 minutes",
+                performance: [
+                    { category: "ES6 Features", correct: 5, wrong: 1, total: 6 },
+                    { category: "DOM Manipulation", correct: 4, wrong: 2, total: 6 },
+                    { category: "Async Programming", correct: 3, wrong: 3, total: 6 },
+                ],
+            },
+        };
+
+        // Get quizId from the URL
+        const params = new URLSearchParams(window.location.search);
+        const quizId = params.get("quizId");
+
+        // Load quiz details dynamically
+        function loadQuizDetails() {
+            if (quizId && quizzes[quizId]) {
+                const quiz = quizzes[quizId];
+                document.getElementById("quizTitle").textContent = quiz.title;
+                document.getElementById("quizDate").textContent = quiz.date;
+                document.getElementById("quizScore").textContent = quiz.score;
+                document.getElementById("quizTime").textContent = quiz.timeSpent;
+
+                // Populate performance table
+                const performanceTable = document.getElementById("performanceTable");
+                quiz.performance.forEach((item) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${item.category}</td>
+                        <td>${item.correct}</td>
+                        <td>${item.wrong}</td>
+                        <td>${item.total}</td>
+                    `;
+                    performanceTable.appendChild(row);
+                });
+            } else {
+                document.getElementById("quizTitle").textContent = "Quiz not found!";
+            }
+        }
+
+        // Initialize page
+        loadQuizDetails();
+    </script>
+</body>
+
+</html>

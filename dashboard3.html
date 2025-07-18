@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Dashboard</title>
+    <!-- Bootstrap CSS for Layout and Responsiveness -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for Dashboard -->
+    <style>
+        /* Custom Gradient Background */
+        body {
+            background: linear-gradient(to bottom, #70037d, black);
+            font-family: Arial, sans-serif;
+        }
+
+        img.rounded-circle {
+            border: 1px solid #020202;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Sidebar Customization */
+        .sidebar {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .sidebar h4,
+        .sidebar p {
+            color: #ddd;
+        }
+
+        .sidebar hr {
+            border-color: #444;
+        }
+
+        /* Vibrant Cards */
+        .card.bg-teal {
+            background-color: #20c997;
+            color: white;
+        }
+
+        .card.bg-blue {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .card.bg-purple {
+            background-color: #6f42c1;
+            color: white;
+        }
+
+        .card.bg-red {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        /* Card Styling */
+        .card {
+            box-shadow: 0 4px 8px rgba(247, 145, 145, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Button Customization */
+        .button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .bg-blue-500 {
+            background-color: #007bff;
+        }
+
+        .bg-green-500 {
+            background-color: #28a745;
+        }
+
+        .bg-red-500 {
+            background-color: #dc3545;
+        }
+
+        .badge {
+            font-size: 0.9rem;
+            padding: 0.5rem;
+        }
+
+        /* Additional Customizations */
+        .text-green-500 {
+            color: #28a745;
+        }
+
+        .text-red-500 {
+            color: #dc3545;
+        }
+
+        .workspace-card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .container-fluid {
+            height: 100%;
+        }
+
+        /* Inclined effect for card */
+        .inclined-card {
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .inclined-card:hover {
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar for User Profile -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="http://images6.fanpop.com/image/photos/35300000/Rapunzel-rapunzel-of-disneys-tangled-35302474-672-934.jpg"
+                            alt="User Avatar" class="img-fluid rounded-circle mb-3" width="100">
+                        <h4>User Name</h4>
+                        <p class="text-muted">user@example.com</p>
+                        <hr>
+                        <h6>Badges</h6>
+                        <div class="badge badge-success p-2">Quiz Master</div>
+                        <div class="badge badge-warning p-2">Beginner Level</div>
+                        <div class="badge badge-primary p-2">Java Expert</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Section -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        Dashboard
+                    </div>
+                    <div class="card-body">
+                        <!-- Profile Overview -->
+                        <section class="mb-4">
+                            <h5>Profile Overview</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6>Quizzes Taken</h6>
+                                    <p>45</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Correct Answers</h6>
+                                    <p>150 / 200</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>Overall Score</h6>
+                                    <p>85%</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Vibrant Cards Section -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card bg-teal inclined-card">
+                                    <h2 class="text-lg">My Quizzes</h2>
+                                    <p>Completed: 10</p>
+                                    <a href="my-quizzes.html" style="color: white;">Click Here To View</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-blue inclined-card">
+                                    <h2 class="text-lg">My Results</h2>
+                                    <p>Average Score: 85%</p>
+                                    <a href="Resultpage.html" style="color: white;">Click Here To View</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-purple inclined-card">
+                                    <h2 class="text-lg">Create Quiz</h2>
+                                    <a href="Admin-Organizer Panel.html" style="color: white;">Click Here To View</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-red inclined-card">
+                                    <h2 class="text-lg">Start New Quiz</h2>
+                                    <a href="Quizselection.html" style="color: white;">Click Here To View</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Leaderboard -->
+                        <section class="mb-4 mt-4">
+                            <h5>Leaderboard</h5>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>User</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Alice</td>
+                                        <td>98%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Bob</td>
+                                        <td>96%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Charlie</td>
+                                        <td>95%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <!-- Recent Activity -->
+                        <section>
+                            <h5>Recent Activity</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <strong>Completed:</strong> Java Basics Quiz (85%)
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Completed:</strong> C++ Intermediate Quiz (90%)
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Completed:</strong> JavaScript Advanced Quiz (80%)
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Links (Bootstrap, jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

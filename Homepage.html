@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles for the Home Page */
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #9c038f, #000000);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .banner {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner h1,
+        .banner p {
+            margin: 10px 0;
+            line-height: 1.5;
+            font-size: 5vw; /* Responsive font size */
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+        }
+
+        footer a {
+            color: #cccccc;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        /* Custom responsive design */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+
+            .form-control {
+                width: 100%;
+            }
+
+            .banner {
+                padding: 15px;
+            }
+
+            .banner h1 {
+                font-size: 6vw; /* Adjusted for smaller screens */
+            }
+
+            .banner p {
+                font-size: 4vw; /* Adjusted for smaller screens */
+            }
+        }
+
+        @media (min-width: 768px) {
+            .form-control {
+                width: 50%;
+            }
+
+            .banner h1 {
+                font-size: 3rem; /* For larger screens */
+            }
+
+            .banner p {
+                font-size: 1.5rem; /* For larger screens */
+            }
+        }
+
+        @media (min-width: 992px) {
+            .banner h1 {
+                font-size: 3.5rem; /* For even larger screens */
+            }
+
+            .banner p {
+                font-size: 1.75rem; /* For even larger screens */
+            }
+        }
+
+        /* Marquee Styling */
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            position: relative;
+            padding: 10px 0;
+            font-size: 1.25rem;
+            text-align: center;
+            color: white;
+            background-color: transparent;
+        }
+
+        .marquee p {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            position: relative;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Interactive button styling */
+        .interactive-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .interactive-btn:hover {
+            transform: scale(1.03); /* Slightly enlarge */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add shadow */
+            color: #000000;
+            background-color: white;
+        }
+        
+        .interactive-btn:active {
+            transform: scale(0.95); /* Slightly shrink on click */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Softer shadow */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <a class="navbar-brand" href="#"><img src="Designer (3).png" width="40"> QUIZ BUDDY</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact-us-page.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="feedback.html">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="EventPage.html">Upcoming Events</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner Section with Image Inside -->
+    <section class="banner text-center text-white d-flex align-items-center">
+        <div class="container">
+            <div class="marquee">
+                <p>Welcome To Quiz Buddy!!! Let's grab the knowledge and make it yours!!!</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-6 text-left">
+                    <h1 class="display-4 display-md-2 display-lg-1">Refine Your Coding Skills with Fun and Engaging
+                        Quizzes</h1>
+                    <p class="lead lead-md">Challenge yourself and improve your programming knowledge through
+                        interactive quizzes.</p>
+                    <a href="registerpage.html" class="btn btn-lg btn-primary mt-4 interactive-btn"
+                        style="margin-bottom: 15px; width: 100%; max-width: 370px;"> <!-- Made responsive -->
+                        Register
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <img src="Designer (3).png" alt="Intro Image"
+                        style="max-width: 100%; height: auto; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Description Section -->
+    <section class="py-5" style="color: aliceblue;">
+        <div class="container text-center">
+            <h2>What is Quiz Buddy?</h2>
+            <p class="lead">Quiz Buddy is your go-to platform for mastering programming languages through quizzes.
+                Select your preferred programming language, choose a difficulty level, and start testing your skills
+                today!</p>
+            <div class="mt-4">
+                <a style="margin-top: 10px; border: 1px solid white;" href="Aboutus.html" class="btn btn-outline-dark btn-lg">About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Quiz Buddy. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mr-3"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="mt-2">
+                <a href="#" class="text-white">Privacy Policy</a> | <a href="#" class="text-white">Terms of Service</a>
+                | <a href="Contact-us-page.html" class="text-white">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JS Links (Bootstrap, FontAwesome, jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom Gradient Background */
+        body {
+            background: linear-gradient(to bottom, #70037d, black);
+            font-family: Arial, sans-serif;
+            color: #ddd;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Table Styling */
+        .table {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        /* Button Customization */
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border: none;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .table thead {
+                display: none;
+            }
+
+            .table tr {
+                display: block;
+                margin-bottom: 15px;
+            }
+
+            .table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center text-white">Admin/Organizer Panel</h2>
+
+        <!-- Quiz Management Section -->
+        <div class="mt-4">
+            <div class="card">
+                <div class="card-header">Quiz Management</div>
+                <div class="card-body">
+                    <button class="btn btn-success mb-3">Add New Quiz</button>
+                    <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th>Quiz Name</th>
+                                <th>Language</th>
+                                <th>Difficulty Level</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Java Basics</td>
+                                <td>Java</td>
+                                <td>Beginner</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                            <!-- Additional quizzes -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Analytics Section -->
+        <div class="mt-5">
+            <div class="card">
+                <div class="card-header">User Analytics</div>
+                <div class="card-body text-center">
+                    <p>Track user activity and quiz performance here.</p>
+                    <button class="btn btn-info">View Analytics</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Creation Section -->
+        <div class="mt-5">
+            <div class="card">
+                <div class="card-header">Event Creation</div>
+                <div class="card-body text-center">
+                    <button class="btn btn-primary">Create New Quiz Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

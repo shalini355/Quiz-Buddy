@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Quizzes - Quiz Buddy</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(to bottom, #70037d, black);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #20c997;
+        }
+
+        .table {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .btn-view {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-view:hover {
+            background-color: #0056b3;
+        }
+
+        .header {
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Header Section -->
+        <div class="header">My Quizzes</div>
+
+        <!-- Quiz List -->
+        <div class="card">
+            <h2>Completed Quizzes</h2>
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Quiz Title</th>
+                        <th>Date Taken</th>
+                        <th>Score</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Row 1 -->
+                    <tr>
+                        <td>1</td>
+                        <td>Java Basics Quiz</td>
+                        <td>Nov 25, 2024</td>
+                        <td>85%</td>
+                        <td>
+                            <a href="quiz-details.html?quizId=1" class="btn-view">View Details</a>
+                        </td>
+                    </tr>
+                    <!-- Example Row 2 -->
+                    <tr>
+                        <td>2</td>
+                        <td>Python Intermediate Quiz</td>
+                        <td>Nov 28, 2024</td>
+                        <td>90%</td>
+                        <td>
+                            <a href="quiz-details.html?quizId=2" class="btn-view">View Details</a>
+                        </td>
+                    </tr>
+                    <!-- Example Row 3 -->
+                    <tr>
+                        <td>3</td>
+                        <td>JavaScript Advanced Quiz</td>
+                        <td>Dec 1, 2024</td>
+                        <td>80%</td>
+                        <td>
+                            <a href="quiz-details.html?quizId=3" class="btn-view">View Details</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Button to Return to Dashboard -->
+        <div class="text-center mt-4">
+            <a href="dashboard3.html" class="btn-view">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
