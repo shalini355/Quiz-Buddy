@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Register/Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #5e0368, rgb(14, 0, 12));
+            color: aliceblue;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            padding: 50px 20px;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 800px;
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+        }
+
+        .form-section {
+            padding: 30px 20px;
+            margin: 30px auto;
+            background-color: rgba(34, 34, 34, 0.9);
+            border-radius: 10px;
+            max-width: 600px;
+        }
+
+        .form-section h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ffffff;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #007bff;
+            color: #ffffff;
+        }
+
+        .interactive-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interactive-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            color: #000000;
+            background-color: white;
+        }
+
+        .interactive-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-link {
+            cursor: pointer;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <a class="navbar-brand" href="#"><img src="Designer (3).png" width="40"> QUIZ BUDDY</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact-us-page.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <h1>Create Your Account</h1>
+    </section>
+
+    <!-- Registration Form Section -->
+    <div class="container form-section">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg interactive-btn btn-block">Register</button>
+            <p class="text-center mt-3 toggle-link" onclick="toggleForms()">Already have an account? Login here</p>
+        </form>
+    </div>
+
+    <!-- Login Form Section (initially hidden) -->
+    <div class="container form-section" id="loginSection" style="display: none;">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg interactive-btn btn-block">Login</button>
+            <p class="text-center mt-3 toggle-link" onclick="toggleForms()">Don't have an account? Register here</p>
+            <p class="text-center mt-2 toggle-link" onclick="showForgotPassword()">Forgot Password?</p>
+        </form>
+    </div>
+
+    <!-- Forgot Password Form Section (initially hidden) -->
+    <div class="container form-section" id="forgotPasswordSection" style="display: none;">
+        <h2>Forgot Password</h2>
+        <form id="forgotPasswordForm">
+            <div class="form-group">
+                <label for="forgotEmail">Email address</label>
+                <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg interactive-btn btn-block">Send Reset Link</button>
+            <p class="text-center mt-3 toggle-link" onclick="toggleForgotPassword()">Remembered your password? Login here</p>
+        </form>
+    </div>
+
+    <!-- JS Links (Bootstrap, jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleForms() {
+            $('#registerForm').closest('.form-section').toggle();
+            $('#loginSection').toggle();
+        }
+
+        function showForgotPassword() {
+            $('#loginSection').hide();
+            $('#forgotPasswordSection').show();
+        }
+
+        function toggleForgotPassword() {
+            $('#forgotPasswordSection').hide();
+            $('#loginSection').show();
+        }
+
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Simulating successful login (you should validate the user here)
+            // For example, you can check the email and password entered by the user
+
+            // Redirect to the dashboard after login
+            window.location.href = 'dashboard3.html'; // Change this to your dashboard URL
+        }
+    </script>
+</body>
+
+</html>

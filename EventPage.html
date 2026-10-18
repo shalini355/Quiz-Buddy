@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom Gradient Background */
+        body {
+            background: linear-gradient(to bottom, #70037d, black);
+            font-family: Arial, sans-serif;
+            color: #ddd;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Button Customization */
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        /* List Group Styling */
+        .list-group-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center text-white">Upcoming Quiz Competitions</h2>
+
+        <!-- List of Events -->
+        <div class="list-group mt-4">
+            <a href="#" class="list-group-item list-group-item-action">
+                <h5>JavaScript Coding Challenge - 20th Oct</h5>
+                <p>Level: Intermediate | Language: JavaScript</p>
+                <button class="btn btn-success">Register</button>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <h5>C++ Debugging Contest - 25th Oct</h5>
+                <p>Level: Advanced | Language: C++</p>
+                <button class="btn btn-success">Register</button>
+            </a>
+            <!-- Add more events -->
+        </div>
+
+        <!-- Live Quiz Interface -->
+        <div class="mt-5">
+            <h3 class="text-center text-white">Join a Live Quiz</h3>
+            <p class="text-center">Participate in real-time quizzes and compete with others.</p>
+            <div class="text-center">
+                <button class="btn btn-primary">Join Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

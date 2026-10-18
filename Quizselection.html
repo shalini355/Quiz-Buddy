@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Quiz Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #040014; /* Background color matching the previous styles */
+            font-family: 'Arial', sans-serif; /* Font styling */
+            color: #ffffff; /* Text color */
+        }
+        .container {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            border-radius: 10px; /* Rounded corners */
+            padding: 30px; /* Padding around content */
+            background-color: #1a1a2e; /* Dark background for the container */
+            margin-top: 50px; /* Margin from the top */
+        }
+        h4 {
+            color: #c67575; /* Color for headings */
+        }
+        .btn-primary {
+            background-color: #007bff; /* Button color */
+            border: none; /* Remove border */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        select.form-control {
+            border-radius: 5px; /* Rounded corners for select */
+            border: 1px solid #00adb5; /* Border color */
+            color: #ffffff; /* Text color for select */
+            background-color: #222831; /* Background color for select */
+        }
+        select.form-control:focus {
+            border-color: #00adb5; /* Change border color on focus */
+            box-shadow: 0 0 5px rgba(0, 173, 181, 0.5); /* Light shadow on focus */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Language Selection -->
+            <div class="col-md-4">
+                <h4>Select Programming Language</h4>
+                <select class="form-control" id="languageSelect">
+                    <option value="" selected disabled>Choose a Language</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                </select>
+            </div>
+
+            <!-- Difficulty Level Selection -->
+            <div class="col-md-4">
+                <h4>Select Difficulty Level</h4>
+                <select class="form-control" id="difficultySelect">
+                    <option value="" selected disabled>Choose a Level</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+
+            <!-- Quiz Categories -->
+            <div class="col-md-4">
+                <h4>Select Quiz Category</h4>
+                <select class="form-control" id="categorySelect">
+                    <option value="" selected disabled>Choose a Category</option>
+                    <option value="arrays">Arrays</option>
+                    <option value="loops">Loops</option>
+                    <option value="oop">Object-Oriented Programming</option>
+                    <option value="dataStructures">Data Structures</option>
+                    <option value="functions">Functions</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Display Quiz Options Based on Selections -->
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-primary" id="startQuizBtn">Start Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Links (Bootstrap, jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for Button Functionality -->
+    <script>
+        // Event listener for Start Quiz button
+        document.getElementById('startQuizBtn').addEventListener('click', function () {
+            // Get the selected values from the dropdowns
+            var language = document.getElementById('languageSelect').value;
+            var difficulty = document.getElementById('difficultySelect').value;
+            var category = document.getElementById('categorySelect').value;
+
+            // Validate that all dropdowns have a value
+            if (language && difficulty && category) {
+                // Redirect to quiz-page.html with query parameters
+                window.location.href = `quiz-page.html?language=${language}&difficulty=${difficulty}&category=${category}`;
+            } else {
+                // Alert if any option is not selected
+                alert('Please select all options!');
+            }
+        });
+    </script>
+</body>
+</html>

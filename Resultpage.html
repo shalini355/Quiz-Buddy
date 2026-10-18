@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .result-card {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 text-center">
+        <h2>Your Results</h2>
+        <h3 id="score">Score: 85%</h3>
+
+        <!-- Correct Answers with Explanations -->
+        <div class="mt-4">
+            <h4>Review Correct Answers</h4>
+            <div class="card result-card">
+                <div class="card-body">
+                    <p><strong>Q1:</strong> What is Java?</p>
+                    <p><strong>Correct Answer:</strong> A programming language</p>
+                    <p><strong>Explanation:</strong> Java is a widely-used programming language for building applications.</p>
+                </div>
+            </div>
+            <!-- Add more questions as needed, without duplicating code -->
+        </div>
+
+        <!-- Badges/Rewards -->
+        <div class="mt-4">
+            <h4>You've Earned a New Badge!</h4>
+            <img src="badge-image.png" alt="Badge" width="100">
+            <p>Java Expert</p>
+        </div>
+
+        <!-- Share Button -->
+        <div class="mt-4">
+            <a href="dashboard3.html" style="border: 1px solid black;">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        function shareResults() {
+            alert('Sharing your results...');
+            // You can integrate social media sharing APIs here.
+        }
+    </script>
+</body>
+</html>

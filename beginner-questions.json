@@ -1,0 +1,82 @@
+[
+    {
+        "question": "What is the capital of France?",
+        "choice1": "Berlin",
+        "choice2": "Madrid",
+        "choice3": "Paris",
+        "choice4": "Rome",
+        "answer": "Madrid"
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "choice1": "Earth",
+        "choice2": "Mars",
+        "choice3": "Jupiter",
+        "choice4": "Saturn",
+        "answer": "Mars"
+    },
+    {
+        "question": "What is the largest ocean on Earth?",
+        "choice1": "Atlantic Ocean",
+        "choice2": "Indian Ocean",
+        "choice3": "Arctic Ocean",
+        "choice4": "Pacific Ocean",
+        "answer": "Pacific Ocean"
+    },
+    {
+        "question": "Who wrote 'Romeo and Juliet'?",
+        "choice1": "William Shakespeare",
+        "choice2": "Jane Austen",
+        "choice3": "Mark Twain",
+        "choice4": "Charles Dickens",
+        "answer": "William Shakespeare"
+    },
+    {
+        "question": "What is the chemical symbol for water?",
+        "choice1": "O2",
+        "choice2": "H2O",
+        "choice3": "CO2",
+        "choice4": "NaCl",
+        "answer": "H2O"
+    },
+    {
+        "question": "What is the hardest natural substance on Earth?",
+        "choice1": "Gold",
+        "choice2": "Iron",
+        "choice3": "Diamond",
+        "choice4": "Platinum",
+        "answer": "Diamond"
+    },
+    {
+        "question": "Which gas do plants primarily use for photosynthesis?",
+        "choice1": "Oxygen",
+        "choice2": "Carbon Dioxide",
+        "choice3": "Nitrogen",
+        "choice4": "Hydrogen",
+        "answer": "Carbon Dioxide"
+    },
+    {
+        "question": "What is the smallest prime number?",
+        "choice1": "1",
+        "choice2": "2",
+        "choice3": "3",
+        "choice4": "5",
+        "answer": "2"
+    },
+    {
+        "question": "In which year did the Titanic sink?",
+        "choice1": "1905",
+        "choice2": "1912",
+        "choice3": "1923",
+        "choice4": "1936",
+        "answer": "1912"
+    },
+    {
+        "question": "Which planet is closest to the Sun?",
+        "choice1": "Earth",
+        "choice2": "Venus",
+        "choice3": "Mercury",
+        "choice4": "Mars",
+        "answer": "Mercury"
+    }
+]
