@@ -1,93 +1,105 @@
-💻 Quiz Buddy — Programming Practice Platform
+<div align="center">
 
-Quiz Buddy is an interactive web platform designed to help users improve their programming skills by testing their knowledge through structured quizzes.
-The platform provides multiple programming languages and difficulty levels, allowing learners to practice from beginner to advanced stages.
+# Quiz Buddy
 
-This project focuses on creating an engaging learning experience through responsive design and interactive user interfaces.
+### Practice programming. Track your progress. Build confidence.
 
-📌 Project Overview
+An interactive, browser-based coding quiz app for practising programming concepts with timed quizzes, explanations, and a personal progress dashboard.
 
-Learning programming requires continuous practice and self-evaluation.
-Quiz Buddy enables users to test their understanding through quizzes categorized by:
+[Explore the project](https://github.com/shalini355/Quiz-Buddy)
 
-Programming language
-Difficulty level
-Skill progression
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-Users can select their preferred language and difficulty level to challenge themselves and track performance.
+</div>
 
-🎯 Key Features
-🧠 Skill-Based Learning
-Multiple programming language quizzes
-Beginner, Intermediate, and Advanced difficulty levels
-Concept-focused questions
-⚡ Interactive Quiz Experience
-Dynamic question rendering
-Real-time answer selection
-Score calculation and result display
-📱 Responsive Design
-Works smoothly across desktop, tablet, and mobile devices
-Clean and intuitive UI for better user experience
-👩‍💻 My Contribution
+## About
 
-Role: Frontend Developer
+Quiz Buddy is a front-end learning project that makes programming practice more engaging. Choose a quiz, answer questions against the timer, review your result, and use the dashboard to revisit your quiz history.
 
-Designed and developed responsive user interface components.
-Implemented quiz interaction logic using JavaScript.
-Built dynamic question navigation and score tracking system.
-Focused on usability and smooth user experience across devices.
-Collaborated with team members for backend integration.
+The app is built with HTML, CSS, and JavaScript. It runs in the browser and does not require a backend or a build step.
 
-🛠️ Tech Stack
-Frontend
-HTML5
-CSS3
-JavaScript (ES6)
-Tools
-Git
-GitHub
-Visual Studio Code
+## Features
 
-🚀 How to Run the Project
-1️⃣ Clone Repository
-git clone https://github.com/your-username/quiz-buddy.git
-cd quiz-buddy
-2️⃣ Open Project
+- **Customisable quizzes** — choose from the available programming topics and difficulty levels.
+- **Timed quiz sessions** — answer questions in a focused, five-minute session.
+- **Instant results** — see your score and review answers with explanations where available.
+- **Progress dashboard** — revisit quiz activity saved in your browser.
+- **Responsive interface** — pages use Bootstrap components and responsive layouts.
+- **Additional pages** — includes account, feedback, contact, about, and organiser/admin interfaces.
 
-Simply open the project folder and run:
+## Get started
 
-index.html
+### Requirements
 
-(or use Live Server extension in VS Code)
+- Git
+- Python 3, or the VS Code **Live Server** extension
+- A modern web browser
 
-📂 Project Structure
-quiz-buddy/
-│
-├── index.html
-├── css/
-├── js/
-├── assets/
-└── README.md
+### Run locally
 
-🎯 Learning Outcomes
-Frontend application development
-DOM manipulation using JavaScript
-Responsive web design principles
-Team collaboration in software projects
+1. Clone the repository:
 
-🔮 Future Improvements
-User authentication system
-Progress tracking dashboard
-Backend database integration
-Timed competitive quizzes
-Leaderboard system
-📄 License
+   ```bash
+   git clone https://github.com/shalini355/Quiz-Buddy.git
+   cd Quiz-Buddy
+   ```
 
-This project is open-source and available under the MIT License.
+2. Start a local web server from the repository root:
 
-👩‍💻 Author
+   **Windows**
 
-Shalini Yadav
-Frontend Developer | B.Tech CSE Student
+   ```powershell
+   py -m http.server 8000
+   ```
 
-GitHub: https://github.com/shalini355
+   **macOS / Linux**
+
+   ```bash
+   python3 -m http.server 8000
+   ```
+
+3. Open [http://localhost:8000](http://localhost:8000) in your browser. The root page redirects to the app.
+
+Alternatively, open `Quiz buddy frontend/index.html` with VS Code Live Server.
+
+> Use a local web server rather than opening the HTML file directly: the quiz loads its question banks with `fetch()`.
+
+## Project structure
+
+```text
+Quiz-Buddy/
+├── index.html                  # Redirects to the app
+├── README.md
+└── Quiz buddy frontend/
+    ├── index.html              # App home page
+    ├── Quizselection.html      # Quiz setup
+    ├── quiz-page.html          # Timed quiz
+    ├── Resultpage.html         # Results
+    ├── dashboard3.html         # Progress dashboard
+    ├── questions.json          # Main question bank
+    ├── beginner-questions.json # Beginner question bank
+    └── ...                     # Other app pages and scripts
+```
+
+## Built with
+
+- **HTML5** for page structure
+- **CSS3** for styling and responsive layouts
+- **JavaScript (ES6)** for quiz interactions and browser-side state
+- **Bootstrap 4** and **Font Awesome 5** for interface components and icons
+- **JSON** files for quiz questions
+
+## Data and project scope
+
+Quiz history and related demo data are stored in the browser's `localStorage`. They stay in that browser and are not synced to a server. This repository contains a front-end project; it does not include a production authentication service or backend.
+
+## Contributing
+
+Suggestions and improvements are welcome. Open an issue to discuss a change, or submit a pull request with a clear description of what you changed.
+
+## Author
+
+**Shalini Yadav** · [GitHub](https://github.com/shalini355)
