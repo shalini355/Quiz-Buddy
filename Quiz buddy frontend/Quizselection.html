@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Quiz Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --bg-card: rgba(26, 16, 44, 0.95);
+            --accent-purple: #70037d;
+            --accent-cyan: #00adb5;
+            --text-main: #ffffff;
+            --text-muted: #d0c8dd;
+            --border-subtle: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background: linear-gradient(135deg, #4a0254 0%, #15001c 60%, #050008 100%);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            color: var(--text-main);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(10, 2, 18, 0.9) !important;
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #dcd6eb !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .user-pill {
+            background: rgba(0, 173, 181, 0.15);
+            border: 1px solid var(--accent-cyan);
+            color: #00f0ff;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .selection-container {
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            padding: 40px 30px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            max-width: 860px;
+            margin: 40px auto;
+        }
+
+        .page-title {
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-label i {
+            color: var(--accent-cyan);
+        }
+
+        select.form-control {
+            border-radius: 8px;
+            border: 1px solid rgba(0, 173, 181, 0.4);
+            color: #ffffff;
+            background-color: #201733;
+            height: 48px;
+            font-size: 1rem;
+            padding: 8px 14px;
+            transition: all 0.2s ease;
+        }
+
+        select.form-control:focus {
+            background-color: #271d3e;
+            color: #ffffff;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 0.2rem rgba(0, 173, 181, 0.25);
+            outline: none;
+        }
+
+        select.form-control option {
+            background-color: #1e1330;
+            color: #ffffff;
+        }
+
+        .preset-badge {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            color: #dcd6eb;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-block;
+            margin: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .preset-badge:hover {
+            background: rgba(0, 173, 181, 0.25);
+            border-color: var(--accent-cyan);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-start {
+            background: linear-gradient(90deg, #007bff, #00adb5);
+            border: none;
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 700;
+            padding: 14px 40px;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 173, 181, 0.4);
+            color: #ffffff;
+        }
+
+        .btn-start:focus-visible {
+            outline: 3px solid #00f0ff;
+            outline-offset: 3px;
+        }
+
+        footer {
+            margin-top: auto;
+            background: rgba(10, 2, 18, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            padding: 20px 0;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00adb5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .selection-container {
+                margin: 20px 15px;
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="Homepage.html">
+                    <img src="Designer (3).png" width="36" height="36" alt="Quiz Buddy Logo">
+                    QUIZ BUDDY
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
+                    aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="Homepage.html">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="Quizselection.html">Quizzes <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard3.html">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Aboutus.html">About</a></li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <span id="userStatus" class="user-pill">
+                            <i class="fas fa-user-circle mr-1"></i> Guest Mode
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Quiz Selection Form -->
+    <main class="container">
+        <div class="selection-container">
+            <div class="text-center">
+                <h1 class="page-title">Customize Your Quiz</h1>
+                <p class="page-subtitle">Choose your language, difficulty, and focus area to test your programming skills.</p>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="mb-4 text-center">
+                <span class="text-muted small d-block mb-2 font-weight-bold">QUICK PRESETS:</span>
+                <span class="preset-badge" onclick="setPreset('javascript', 'beginner', 'syntax')">⚡ JavaScript Basics</span>
+                <span class="preset-badge" onclick="setPreset('python', 'beginner', 'arrays')">🐍 Python Fundamentals</span>
+                <span class="preset-badge" onclick="setPreset('java', 'intermediate', 'oop')">☕ Java OOP</span>
+                <span class="preset-badge" onclick="setPreset('cpp', 'intermediate', 'dataStructures')">⚙️ C++ Core</span>
+            </div>
+
+            <form id="quizSelectForm" onsubmit="handleStartQuiz(event)">
+                <div class="row">
+                    <!-- Language Selection -->
+                    <div class="col-md-4 mb-3">
+                        <label for="languageSelect" class="form-label">
+                            <i class="fas fa-code"></i> Language
+                        </label>
+                        <select class="form-control" id="languageSelect" required>
+                            <option value="javascript" selected>JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="cpp">C++</option>
+                        </select>
+                    </div>
+
+                    <!-- Difficulty Level Selection -->
+                    <div class="col-md-4 mb-3">
+                        <label for="difficultySelect" class="form-label">
+                            <i class="fas fa-layer-group"></i> Difficulty
+                        </label>
+                        <select class="form-control" id="difficultySelect" required>
+                            <option value="beginner" selected>Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+
+                    <!-- Quiz Categories -->
+                    <div class="col-md-4 mb-3">
+                        <label for="categorySelect" class="form-label">
+                            <i class="fas fa-tags"></i> Category
+                        </label>
+                        <select class="form-control" id="categorySelect">
+                            <option value="" selected>All Topics</option>
+                            <option value="syntax">Syntax & Basics</option>
+                            <option value="loops">Loops & Control Flow</option>
+                            <option value="arrays">Arrays & Sequences</option>
+                            <option value="functions">Functions & Scope</option>
+                            <option value="oop">Object-Oriented (OOP)</option>
+                            <option value="dataStructures">Data Structures</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-start" id="startQuizBtn">
+                        <i class="fas fa-play mr-2"></i> Start Quiz
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2024–2026 Quiz Buddy. An educational frontend project.</p>
+            <div>
+                <a href="privacy.html" class="mr-3">Privacy Policy</a>
+                <a href="terms.html" class="mr-3">Terms of Service</a>
+                <a href="Contact-us-page.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Links -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load user status
+            const rawUser = localStorage.getItem('quiz_user');
+            if (rawUser) {
+                try {
+                    const user = JSON.parse(rawUser);
+                    document.getElementById('userStatus').innerHTML = `
+                        <i class="fas ${user.isGuest ? 'fa-user-clock' : 'fa-user-check'} mr-1"></i> ${user.name || 'User'}
+                    `;
+                } catch(e) {}
+            }
+        });
+
+        function setPreset(lang, diff, cat) {
+            document.getElementById('languageSelect').value = lang;
+            document.getElementById('difficultySelect').value = diff;
+            document.getElementById('categorySelect').value = cat;
+        }
+
+        function handleStartQuiz(event) {
+            event.preventDefault();
+            const language = document.getElementById('languageSelect').value;
+            const difficulty = document.getElementById('difficultySelect').value;
+            const category = document.getElementById('categorySelect').value;
+
+            // Direct route to quiz page with query params
+            window.location.href = `quiz-page.html?language=${encodeURIComponent(language)}&difficulty=${encodeURIComponent(difficulty)}&category=${encodeURIComponent(category)}`;
+        }
+    </script>
+</body>
+</html>

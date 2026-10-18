@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Interactive Coding Quizzes</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome 5 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0d0118;
+            --bg-card: rgba(26, 16, 44, 0.95);
+            --accent-purple: #70037d;
+            --accent-cyan: #00adb5;
+            --accent-blue: #007bff;
+            --text-main: #ffffff;
+            --text-muted: #d0c8dd;
+            --border-subtle: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: linear-gradient(135deg, #4a0254 0%, #15001c 60%, #050008 100%);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(10, 2, 18, 0.9) !important;
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #dcd6eb !important;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-item.active .nav-link {
+            color: #ffffff !important;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background-color: rgba(0, 0, 0, 0.35);
+            padding: 50px 0 60px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.25;
+            color: #ffffff;
+            margin-bottom: 18px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 520px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-guest-cta {
+            background-color: #007bff;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 14px 30px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.05rem;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+            text-decoration: none !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-guest-cta:hover {
+            background-color: #0069d9;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .btn-guest-cta:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        .btn-register-cta {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            text-decoration: none !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-register-cta:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .hero-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* Pillars Section */
+        .features-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 45px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 30px 24px;
+            height: 100%;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 173, 181, 0.6);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 18px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #c9c3d6;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            background: rgba(10, 2, 18, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            padding: 30px 0 25px;
+            color: #aaa;
+            font-size: 0.92rem;
+        }
+
+        footer a {
+            color: #00adb5;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .footer-social a {
+            font-size: 1.25rem;
+            color: #dcd6eb;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent-cyan);
+        }
+
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-img-col {
+                margin-top: 35px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-guest-cta, .btn-register-cta {
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn-guest-cta, .btn-register-cta, .feature-card {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="Homepage.html">
+                    <img src="Designer (3).png" width="38" height="38" alt="Quiz Buddy Logo">
+                    QUIZ BUDDY
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav"
+                    aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ml-auto align-items-lg-center">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="Homepage.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Quizselection.html">Quizzes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard3.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Aboutus.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="feedback.html">Feedback</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact-us-page.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item ml-lg-2 mt-2 mt-lg-0">
+                            <a class="btn btn-sm btn-outline-info" href="registerpage.html">Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner / Hero Section -->
+    <main>
+        <section class="hero-banner">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="hero-title">Master Programming Fundamentals Through Active Recall</h1>
+                        <p class="hero-subtitle">
+                            Challenge yourself across JavaScript, Python, Java, and C++. Immediate answers, comprehensive explanations, and real-time score tracking.
+                        </p>
+
+                        <!-- Call to Action Group -->
+                        <div class="hero-cta-group">
+                            <button type="button" class="btn-guest-cta" onclick="startGuestSession()">
+                                <i class="fas fa-play mr-2"></i> Play as Guest (No Sign-up)
+                            </button>
+                            <a href="registerpage.html" class="btn-register-cta">
+                                <i class="fas fa-user-plus mr-2"></i> Register / Login
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 hero-img-col">
+                        <img src="Designer (3).png" alt="Quiz Buddy Coding Interface Illustration" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Value Pillars -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Practice with Quiz Buddy?</h2>
+                    <p>Designed for computer science students and self-taught developers who want concise, reliable knowledge checks.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h3>Multi-Language Tracks</h3>
+                            <p>Target specific languages including JavaScript, Python, Java, and C++ with questions structured by difficulty from beginner to advanced.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h3>Actionable Explanations</h3>
+                            <p>Never wonder why an answer was wrong. Every question delivers instant educational feedback and references to cement your understanding.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-card">
+                            <div class="card-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <h3>Personalized Dashboard</h3>
+                            <p>Track quiz sessions, review detailed answer histories, earn milestone badges, and benchmark your progress across categories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <div class="footer-social mb-3">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="Contact-us-page.html" aria-label="Contact Support"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="mb-2">&copy; 2024–2026 Quiz Buddy. An educational portfolio project.</p>
+            <p class="mb-0">
+                <a href="privacy.html" class="mr-3">Privacy Policy</a>
+                <a href="terms.html" class="mr-3">Terms of Service</a>
+                <a href="Aboutus.html" class="mr-3">About Us</a>
+                <a href="Contact-us-page.html">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function startGuestSession() {
+            const guestUser = {
+                name: 'Guest Coder',
+                email: 'guest@quizbuddy.local',
+                isGuest: true,
+                joinedAt: new Date().toISOString()
+            };
+            localStorage.setItem('quiz_user', JSON.stringify(guestUser));
+            window.location.href = 'Quizselection.html';
+        }
+    </script>
+</body>
+
+</html>

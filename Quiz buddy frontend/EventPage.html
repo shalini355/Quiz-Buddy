@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Community Quiz Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --bg-card: rgba(26, 16, 44, 0.95);
+            --accent-purple: #70037d;
+            --accent-cyan: #00adb5;
+            --accent-green: #28a745;
+            --accent-blue: #007bff;
+            --text-main: #ffffff;
+            --text-muted: #d0c8dd;
+            --border-subtle: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: linear-gradient(135deg, #4a0254 0%, #15001c 60%, #050008 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(10, 2, 18, 0.9) !important;
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #dcd6eb !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .events-container {
+            max-width: 880px;
+            margin: 40px auto;
+            padding: 35px 25px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 173, 181, 0.5);
+        }
+
+        .event-badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(0, 173, 181, 0.2);
+            color: #00f0ff;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .event-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .event-meta {
+            font-size: 0.9rem;
+            color: #d0c8dd;
+        }
+
+        .live-room-box {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(112, 3, 125, 0.3) 100%);
+            border: 1px solid rgba(0, 173, 181, 0.4);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        footer {
+            margin-top: auto;
+            background: rgba(10, 2, 18, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            padding: 20px 0;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00adb5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="Homepage.html">
+                    <img src="Designer (3).png" width="36" height="36" alt="Quiz Buddy Logo">
+                    QUIZ BUDDY
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
+                    aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="Homepage.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Quizselection.html">Quizzes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard3.html">Dashboard</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="EventPage.html">Events <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Aboutus.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="events-container">
+            <div class="text-center mb-4">
+                <h1 class="h3 font-weight-bold">Upcoming Coding Competitions</h1>
+                <p class="text-muted">Put your skills to the test in scheduled developer challenges and peer sprints.</p>
+            </div>
+
+            <div id="rsvpAlert" class="alert alert-success" style="display:none;">
+                <i class="fas fa-check-circle mr-1"></i> You are registered for the challenge! We've saved your RSVP locally.
+            </div>
+
+            <!-- Event 1 -->
+            <div class="event-card">
+                <div>
+                    <span class="event-badge">JavaScript Sprint</span>
+                    <h2 class="event-title">Async & ES6+ Speed Challenge</h2>
+                    <div class="event-meta">
+                        <i class="fas fa-calendar-alt text-info mr-1"></i> Coming this Saturday • 
+                        <i class="fas fa-signal text-warning ml-2 mr-1"></i> Intermediate
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-info" onclick="handleRSVP('Async & ES6+ Speed Challenge')">
+                        <i class="fas fa-bookmark mr-1"></i> RSVP Event
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card">
+                <div>
+                    <span class="event-badge">Python Arena</span>
+                    <h2 class="event-title">Data Structures & Recursion Duel</h2>
+                    <div class="event-meta">
+                        <i class="fas fa-calendar-alt text-info mr-1"></i> Next Wednesday • 
+                        <i class="fas fa-signal text-warning ml-2 mr-1"></i> Advanced
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-info" onclick="handleRSVP('Data Structures & Recursion Duel')">
+                        <i class="fas fa-bookmark mr-1"></i> RSVP Event
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="event-card">
+                <div>
+                    <span class="event-badge">Java / C++ Arena</span>
+                    <h2 class="event-title">Object-Oriented Design Sprint</h2>
+                    <div class="event-meta">
+                        <i class="fas fa-calendar-alt text-info mr-1"></i> Bi-weekly Challenge • 
+                        <i class="fas fa-signal text-warning ml-2 mr-1"></i> All Levels
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-info" onclick="handleRSVP('Object-Oriented Design Sprint')">
+                        <i class="fas fa-bookmark mr-1"></i> RSVP Event
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Quiz Practice Room CTA -->
+            <div class="live-room-box">
+                <h2 class="h4 font-weight-bold mb-2">Can't wait for scheduled events?</h2>
+                <p class="text-muted mb-3">Jump into an on-demand timed challenge right now and benchmark your score against the leaderboard.</p>
+                <a href="Quizselection.html" class="btn btn-primary px-4 py-2 font-weight-bold">
+                    <i class="fas fa-play mr-1"></i> Launch Timed Practice Quiz
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2024–2026 Quiz Buddy. An educational frontend project.</p>
+            <div>
+                <a href="privacy.html" class="mr-3">Privacy Policy</a>
+                <a href="terms.html" class="mr-3">Terms of Service</a>
+                <a href="Contact-us-page.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function handleRSVP(eventName) {
+            let rsvps = [];
+            try {
+                rsvps = JSON.parse(localStorage.getItem('quiz_rsvps')) || [];
+            } catch(e) {
+                rsvps = [];
+            }
+            if (!rsvps.includes(eventName)) {
+                rsvps.push(eventName);
+                localStorage.setItem('quiz_rsvps', JSON.stringify(rsvps));
+            }
+
+            const alertEl = document.getElementById('rsvpAlert');
+            alertEl.innerHTML = `<i class="fas fa-check-circle mr-1"></i> You have successfully RSVP'd for <strong>${eventName}</strong>!`;
+            alertEl.style.display = 'block';
+            setTimeout(() => { alertEl.style.display = 'none'; }, 3500);
+        }
+    </script>
+</body>
+
+</html>

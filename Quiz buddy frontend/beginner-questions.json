@@ -1,0 +1,82 @@
+[
+    {
+        "question": "Which programming language is predominantly known as the language of the modern web browser?",
+        "choice1": "Python",
+        "choice2": "C++",
+        "choice3": "JavaScript",
+        "choice4": "Java",
+        "answer": "JavaScript"
+    },
+    {
+        "question": "Which data type is used in Python to represent True or False values?",
+        "choice1": "int",
+        "choice2": "bool",
+        "choice3": "string",
+        "choice4": "float",
+        "answer": "bool"
+    },
+    {
+        "question": "In Java, what keyword is used to inherit a class?",
+        "choice1": "implements",
+        "choice2": "extends",
+        "choice3": "inherits",
+        "choice4": "super",
+        "answer": "extends"
+    },
+    {
+        "question": "What is the standard file extension for C++ source files?",
+        "choice1": ".cp",
+        "choice2": ".cpp",
+        "choice3": ".cxxm",
+        "choice4": ".c",
+        "answer": ".cpp"
+    },
+    {
+        "question": "Which HTML tag is used to embed or reference client-side JavaScript code?",
+        "choice1": "<script>",
+        "choice2": "<javascript>",
+        "choice3": "<js>",
+        "choice4": "<code>",
+        "answer": "<script>"
+    },
+    {
+        "question": "In Python, which character is used to indicate a single-line comment?",
+        "choice1": "//",
+        "choice2": "#",
+        "choice3": "/*",
+        "choice4": "--",
+        "answer": "#"
+    },
+    {
+        "question": "What does CSS stand for in web development?",
+        "choice1": "Computer Style Sheets",
+        "choice2": "Cascading Style Sheets",
+        "choice3": "Creative Styling Syntax",
+        "choice4": "Colorful Style System",
+        "answer": "Cascading Style Sheets"
+    },
+    {
+        "question": "Which function prints formatted output to the console in Python 3?",
+        "choice1": "echo()",
+        "choice2": "console.log()",
+        "choice3": "print()",
+        "choice4": "System.out.println()",
+        "answer": "print()"
+    },
+    {
+        "question": "In C++, which stream object is used to read input from the standard input (keyboard)?",
+        "choice1": "std::cin",
+        "choice2": "std::cout",
+        "choice3": "std::cerr",
+        "choice4": "std::read",
+        "answer": "std::cin"
+    },
+    {
+        "question": "Which of the following is NOT a primitive data type in Java?",
+        "choice1": "int",
+        "choice2": "boolean",
+        "choice3": "char",
+        "choice4": "String",
+        "answer": "String"
+    }
+]

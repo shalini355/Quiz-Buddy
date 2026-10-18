@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - User Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --bg-card: rgba(26, 16, 44, 0.95);
+            --accent-purple: #70037d;
+            --accent-cyan: #00adb5;
+            --accent-green: #28a745;
+            --accent-blue: #007bff;
+            --text-main: #ffffff;
+            --text-muted: #d0c8dd;
+            --border-subtle: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: linear-gradient(135deg, #4a0254 0%, #15001c 60%, #050008 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(10, 2, 18, 0.9) !important;
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #dcd6eb !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .dashboard-container {
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .dashboard-card {
+            background-color: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 24px;
+            padding: 24px;
+        }
+
+        /* Avatar Styling */
+        .avatar-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007bff, #00adb5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 auto 15px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 173, 181, 0.3);
+        }
+
+        .user-mode-pill {
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .pill-guest {
+            background: rgba(0, 173, 181, 0.2);
+            border: 1px solid var(--accent-cyan);
+            color: #00f0ff;
+        }
+
+        .pill-member {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid var(--accent-green);
+            color: #98ffb3;
+        }
+
+        .stat-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Action Cards */
+        .action-card {
+            border-radius: 12px;
+            padding: 22px;
+            color: #ffffff;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .action-card.bg-teal {
+            background: linear-gradient(135deg, #108466 0%, #0d5f49 100%);
+        }
+
+        .action-card.bg-blue {
+            background: linear-gradient(135deg, #0056b3 0%, #003e82 100%);
+        }
+
+        .action-card.bg-purple {
+            background: linear-gradient(135deg, #5c2378 0%, #3e1253 100%);
+        }
+
+        .action-card.bg-orange {
+            background: linear-gradient(135deg, #b84e09 0%, #7d3303 100%);
+        }
+
+        .action-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .action-card p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 15px;
+        }
+
+        .action-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #ffffff;
+        }
+
+        /* Activity List */
+        .activity-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .table-dark-custom {
+            background-color: transparent;
+            color: #ffffff;
+        }
+
+        .table-dark-custom th {
+            border-top: none;
+            border-bottom: 2px solid var(--border-subtle);
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .table-dark-custom td {
+            border-top: 1px solid var(--border-subtle);
+            vertical-align: middle;
+        }
+
+        footer {
+            margin-top: auto;
+            background: rgba(10, 2, 18, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            padding: 20px 0;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00adb5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="Homepage.html">
+                    <img src="Designer (3).png" width="36" height="36" alt="Quiz Buddy Logo">
+                    QUIZ BUDDY
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
+                    aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="Homepage.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Quizselection.html">Quizzes</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="dashboard3.html">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="Aboutus.html">About</a></li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="handleLogout()">
+                            <i class="fas fa-sign-out-alt mr-1"></i> <span id="authActionLabel">Log Out</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container dashboard-container">
+        <div class="row">
+            <!-- Left Column: User Profile Card -->
+            <div class="col-lg-4">
+                <div class="dashboard-card text-center">
+                    <div class="avatar-circle" id="userAvatar">GC</div>
+                    <div id="modePill" class="user-mode-pill pill-guest">
+                        <i class="fas fa-user-clock mr-1"></i> Guest Mode
+                    </div>
+                    <h2 class="h5 font-weight-bold mb-1" id="userName">Guest Coder</h2>
+                    <p class="text-muted small mb-3" id="userEmail">guest@quizbuddy.local</p>
+                    
+                    <div id="guestNotice" class="alert alert-info py-2 px-3 small text-left mb-3">
+                        <i class="fas fa-info-circle mr-1"></i> <strong>Guest Session:</strong> Scores are saved locally on this browser. Want persistent cloud stats in the future? <a href="registerpage.html" class="text-white font-weight-bold">Register free</a>.
+                    </div>
+
+                    <hr class="border-secondary my-3">
+
+                    <!-- Badges -->
+                    <h3 class="h6 text-uppercase text-muted font-weight-bold mb-2">Milestone Badges</h3>
+                    <div class="d-flex flex-wrap justify-content-center gap-2" id="badgesContainer">
+                        <span class="badge badge-primary p-2 m-1"><i class="fas fa-play mr-1"></i> Active Learner</span>
+                        <span class="badge badge-info p-2 m-1" id="scoreBadge"><i class="fas fa-shield-alt mr-1"></i> Explorer</span>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="Quizselection.html" class="btn btn-primary btn-block">
+                            <i class="fas fa-plus-circle mr-1"></i> Start New Quiz
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Stats & Action Center -->
+            <div class="col-lg-8">
+                <!-- Overview Stats -->
+                <div class="dashboard-card">
+                    <h2 class="h5 font-weight-bold mb-3"><i class="fas fa-chart-line text-info mr-2"></i>Performance Overview</h2>
+                    <div class="row">
+                        <div class="col-sm-4 mb-2">
+                            <div class="stat-block">
+                                <div class="stat-num" id="statQuizzesTaken">0</div>
+                                <div class="stat-label">Quizzes Taken</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-2">
+                            <div class="stat-block">
+                                <div class="stat-num" id="statAvgScore">0%</div>
+                                <div class="stat-label">Average Score</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-2">
+                            <div class="stat-block">
+                                <div class="stat-num" id="statCorrectAnswers">0</div>
+                                <div class="stat-label">Correct Answers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Cards Grid (Without rotated distortion) -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <a href="my-quizzes.html" class="action-card bg-teal text-decoration-none">
+                            <div>
+                                <h3><i class="fas fa-history mr-2"></i>My Quizzes</h3>
+                                <p>Review completed quiz records, dates, and historical scores.</p>
+                            </div>
+                            <span class="action-link">View Quiz History <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <a href="Resultpage.html" class="action-card bg-blue text-decoration-none">
+                            <div>
+                                <h3><i class="fas fa-award mr-2"></i>Latest Results</h3>
+                                <p>Analyze question-by-question breakdown from your most recent attempt.</p>
+                            </div>
+                            <span class="action-link">Review Breakdown <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <a href="Quizselection.html" class="action-card bg-purple text-decoration-none">
+                            <div>
+                                <h3><i class="fas fa-sliders-h mr-2"></i>Custom Quiz</h3>
+                                <p>Pick custom programming languages, difficulty, and focus categories.</p>
+                            </div>
+                            <span class="action-link">Configure Quiz <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <a href="EventPage.html" class="action-card bg-orange text-decoration-none">
+                            <div>
+                                <h3><i class="fas fa-calendar-alt mr-2"></i>Community Events</h3>
+                                <p>Check upcoming developer quiz sprints and coding challenges.</p>
+                            </div>
+                            <span class="action-link">Explore Events <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Activity List -->
+                <div class="dashboard-card">
+                    <h2 class="h5 font-weight-bold mb-3"><i class="fas fa-clock text-info mr-2"></i>Recent Activity</h2>
+                    <div id="recentActivityList">
+                        <!-- Populated via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Community Leaderboard -->
+                <div class="dashboard-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="h5 font-weight-bold mb-0"><i class="fas fa-trophy text-warning mr-2"></i>Community Leaderboard</h2>
+                        <span class="badge badge-secondary">Weekly Ranking</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-dark-custom">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Developer</th>
+                                    <th>Category</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="text-warning font-weight-bold">#1</span></td>
+                                    <td>Alex_Dev</td>
+                                    <td>JavaScript Advanced</td>
+                                    <td><span class="badge badge-success">98%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-muted font-weight-bold">#2</span></td>
+                                    <td>Priya_Codes</td>
+                                    <td>Python OOP</td>
+                                    <td><span class="badge badge-success">95%</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-muted font-weight-bold">#3</span></td>
+                                    <td>Marcus_K</td>
+                                    <td>Java Basics</td>
+                                    <td><span class="badge badge-info">92%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2024–2026 Quiz Buddy. An educational frontend project.</p>
+            <div>
+                <a href="privacy.html" class="mr-3">Privacy Policy</a>
+                <a href="terms.html" class="mr-3">Terms of Service</a>
+                <a href="Contact-us-page.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserProfile();
+            loadQuizStats();
+        });
+
+        function loadUserProfile() {
+            const rawUser = localStorage.getItem('quiz_user');
+            let user = {
+                name: 'Guest Coder',
+                email: 'guest@quizbuddy.local',
+                isGuest: true
+            };
+
+            if (rawUser) {
+                try {
+                    user = JSON.parse(rawUser);
+                } catch(e) {}
+            }
+
+            document.getElementById('userName').innerText = user.name || 'Developer';
+            document.getElementById('userEmail').innerText = user.email || 'guest@quizbuddy.local';
+
+            // Initials avatar
+            const initials = (user.name || 'GC')
+                .split(' ')
+                .map(n => n[0])
+                .join('')
+                .toUpperCase()
+                .slice(0, 2);
+            document.getElementById('userAvatar').innerText = initials;
+
+            const modePill = document.getElementById('modePill');
+            const guestNotice = document.getElementById('guestNotice');
+            const authActionLabel = document.getElementById('authActionLabel');
+
+            if (user.isGuest) {
+                modePill.className = 'user-mode-pill pill-guest';
+                modePill.innerHTML = '<i class="fas fa-user-clock mr-1"></i> Guest Mode';
+                guestNotice.style.display = 'block';
+                authActionLabel.innerText = 'Exit Guest Mode';
+            } else {
+                modePill.className = 'user-mode-pill pill-member';
+                modePill.innerHTML = '<i class="fas fa-user-check mr-1"></i> Registered Member';
+                guestNotice.style.display = 'none';
+                authActionLabel.innerText = 'Log Out';
+            }
+        }
+
+        function loadQuizStats() {
+            let history = [];
+            try {
+                history = JSON.parse(localStorage.getItem('quiz_history')) || [];
+            } catch(e) {
+                history = [];
+            }
+
+            const statQuizzesTaken = document.getElementById('statQuizzesTaken');
+            const statAvgScore = document.getElementById('statAvgScore');
+            const statCorrectAnswers = document.getElementById('statCorrectAnswers');
+            const activityContainer = document.getElementById('recentActivityList');
+
+            if (!history || history.length === 0) {
+                statQuizzesTaken.innerText = '0';
+                statAvgScore.innerText = '0%';
+                statCorrectAnswers.innerText = '0';
+                activityContainer.innerHTML = `
+                    <div class="text-center py-4 text-muted">
+                        <i class="fas fa-hourglass-start fa-2x mb-2 text-info"></i>
+                        <p class="mb-2">No quiz sessions recorded yet.</p>
+                        <a href="Quizselection.html" class="btn btn-sm btn-outline-info">Take Your First Quiz</a>
+                    </div>
+                `;
+                return;
+            }
+
+            statQuizzesTaken.innerText = history.length;
+
+            let totalPercent = 0;
+            let totalCorrect = 0;
+
+            history.forEach(item => {
+                const percent = parseInt(item.score, 10) || 0;
+                totalPercent += percent;
+                totalCorrect += (item.correctAnswers || 0);
+            });
+
+            const avg = Math.round(totalPercent / history.length);
+            statAvgScore.innerText = `${avg}%`;
+            statCorrectAnswers.innerText = totalCorrect;
+
+            // Badges update
+            if (avg >= 80) {
+                document.getElementById('scoreBadge').innerHTML = '<i class="fas fa-crown text-warning mr-1"></i> High Achiever';
+            }
+
+            // Populate Recent Activity
+            activityContainer.innerHTML = '';
+            history.slice(0, 5).forEach(session => {
+                const div = document.createElement('div');
+                div.className = 'activity-item';
+                div.innerHTML = `
+                    <div>
+                        <strong>${session.title || 'Coding Quiz'}</strong>
+                        <div class="small text-muted">${session.date || 'Recent'} • ${session.difficulty || 'Beginner'}</div>
+                    </div>
+                    <div>
+                        <span class="badge badge-${parseInt(session.score, 10) >= 70 ? 'success' : 'warning'} p-2">
+                            ${session.score} (${session.scoreRaw || ''})
+                        </span>
+                    </div>
+                `;
+                activityContainer.appendChild(div);
+            });
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('quiz_user');
+            window.location.href = 'Homepage.html';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Quiz Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --bg-card: rgba(26, 16, 44, 0.95);
+            --accent-purple: #70037d;
+            --accent-cyan: #00adb5;
+            --accent-green: #28a745;
+            --accent-blue: #007bff;
+            --text-main: #ffffff;
+            --text-muted: #d0c8dd;
+            --border-subtle: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: linear-gradient(135deg, #4a0254 0%, #15001c 60%, #050008 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(10, 2, 18, 0.9) !important;
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(8px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            border-radius: 8px;
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #dcd6eb !important;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .details-container {
+            max-width: 860px;
+            margin: 35px auto;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .quiz-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-cell {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .info-cell .label {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .info-cell .val {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .breakdown-table {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            overflow: hidden;
+            color: #ffffff;
+            margin-top: 15px;
+        }
+
+        .breakdown-table th {
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--accent-cyan);
+            border: none;
+            padding: 12px;
+        }
+
+        .breakdown-table td {
+            border-top: 1px solid var(--border-subtle);
+            padding: 12px;
+            color: #dcd6eb;
+        }
+
+        footer {
+            margin-top: auto;
+            background: rgba(10, 2, 18, 0.95);
+            border-top: 1px solid var(--border-subtle);
+            padding: 20px 0;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00adb5;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="Homepage.html">
+                    <img src="Designer (3).png" width="36" height="36" alt="Quiz Buddy Logo">
+                    QUIZ BUDDY
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent"
+                    aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="Homepage.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Quizselection.html">Quizzes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard3.html">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="my-quizzes.html">My Quizzes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="details-container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                <h1 class="h3 font-weight-bold mb-0" id="quizTitle">Quiz Performance Details</h1>
+                <span class="badge badge-primary px-3 py-2" id="quizBadge">Validated Session</span>
+            </div>
+
+            <!-- Quiz Metrics -->
+            <div class="quiz-info-grid">
+                <div class="info-cell">
+                    <div class="label">Date Completed</div>
+                    <div class="val" id="quizDate">--</div>
+                </div>
+                <div class="info-cell">
+                    <div class="label">Score Achieved</div>
+                    <div class="val text-success" id="quizScore">--</div>
+                </div>
+                <div class="info-cell">
+                    <div class="label">Correct Answers</div>
+                    <div class="val" id="quizCorrect">--</div>
+                </div>
+                <div class="info-cell">
+                    <div class="label">Total Questions</div>
+                    <div class="val" id="quizTotal">--</div>
+                </div>
+            </div>
+
+            <!-- Performance Breakdown Table -->
+            <h2 class="h5 font-weight-bold mt-4 mb-2"><i class="fas fa-chart-pie text-info mr-2"></i>Topic Breakdown</h2>
+            <div class="table-responsive">
+                <table class="table breakdown-table text-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Topic / Domain</th>
+                            <th>Status</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="breakdownTableBody">
+                        <!-- Populated via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4 pt-2">
+                <a href="my-quizzes.html" class="btn btn-outline-light mr-2">
+                    <i class="fas fa-arrow-left mr-1"></i> Back to History
+                </a>
+                <a href="Quizselection.html" class="btn btn-primary">
+                    <i class="fas fa-redo mr-1"></i> Retake / New Quiz
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2024–2026 Quiz Buddy. An educational frontend project.</p>
+            <div>
+                <a href="privacy.html" class="mr-3">Privacy Policy</a>
+                <a href="terms.html" class="mr-3">Terms of Service</a>
+                <a href="Contact-us-page.html">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const quizId = params.get('quizId');
+
+            let history = [];
+            try {
+                history = JSON.parse(localStorage.getItem('quiz_history')) || [];
+            } catch (e) {
+                history = [];
+            }
+
+            // Find quiz in local storage
+            let matched = history.find(item => item.id === quizId);
+            if (!matched && history.length > 0) {
+                // If index passed or fallback to first
+                const index = parseInt(quizId, 10);
+                if (!isNaN(index) && history[index]) {
+                    matched = history[index];
+                } else {
+                    matched = history[0];
+                }
+            }
+
+            // If still no history, provide a clean fallback baseline
+            if (!matched) {
+                matched = {
+                    title: "JavaScript Fundamentals Quiz",
+                    date: "October 2026",
+                    score: "80%",
+                    scoreRaw: "8/10",
+                    correctAnswers: 8,
+                    wrongAnswers: 2,
+                    totalQuestions: 10,
+                    language: "JavaScript"
+                };
+            }
+
+            document.getElementById('quizTitle').innerText = matched.title || 'Programming Quiz';
+            document.getElementById('quizDate').innerText = matched.date || 'Recent';
+            document.getElementById('quizScore').innerText = matched.score || '80%';
+            document.getElementById('quizCorrect').innerText = matched.correctAnswers !== undefined ? `${matched.correctAnswers}` : '8';
+            document.getElementById('quizTotal').innerText = matched.totalQuestions !== undefined ? `${matched.totalQuestions}` : '10';
+
+            const tbody = document.getElementById('breakdownTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td class="text-left font-weight-bold text-white">Syntax & Data Types</td>
+                    <td><span class="badge badge-success">Proficient</span></td>
+                    <td>High Accuracy</td>
+                </tr>
+                <tr>
+                    <td class="text-left font-weight-bold text-white">Functions & Scope</td>
+                    <td><span class="badge badge-success">Proficient</span></td>
+                    <td>Mastered</td>
+                </tr>
+                <tr>
+                    <td class="text-left font-weight-bold text-white">Arrays & Iteration</td>
+                    <td><span class="badge badge-info">Solid</span></td>
+                    <td>Consistent</td>
+                </tr>
+            `;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Buddy - Results Review</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #4a0254 0%, #15001c 60%, #050008 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(26, 16, 44, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .score-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .review-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .review-item {
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 16px;
+            text-align: left;
+        }
+
+        .review-item.is-correct {
+            border-left: 4px solid #28a745;
+        }
+
+        .review-item.is-incorrect {
+            border-left: 4px solid #dc3545;
+        }
+
+        .btn-custom {
+            padding: 10px 24px;
+            font-weight: 600;
+            border-radius: 6px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="h3 font-weight-bold mb-3">Quiz Results Review</h1>
+        <div class="score-box">
+            <h2 class="h4 mb-1">Your Score</h2>
+            <div class="display-4 font-weight-bold text-info" id="score">0%</div>
+        </div>
+
+        <div id="results">
+            <h3 class="h5 text-left border-bottom pb-2 border-secondary">Question Review</h3>
+            <ul class="review-list" id="questionReview">
+                <!-- Dynamically populated -->
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <a href="dashboard3.html" class="btn btn-primary btn-custom">Dashboard</a>
+            <a href="Quizselection.html" class="btn btn-outline-light btn-custom">Start New Quiz</a>
+            <a href="Resultpage.html" class="btn btn-info btn-custom">View Detailed Breakdown</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const score = localStorage.getItem('mostRecentScore') || '0';
+            const rawScore = localStorage.getItem('rawScore');
+            document.getElementById('score').innerText = rawScore ? `${score}% (${rawScore})` : `${score}%`;
+
+            let userAnswers = [];
+            try {
+                userAnswers = JSON.parse(localStorage.getItem('userAnswers')) || [];
+            } catch (e) {
+                userAnswers = [];
+            }
+
+            const questionReview = document.getElementById('questionReview');
+            if (!userAnswers || userAnswers.length === 0) {
+                questionReview.innerHTML = '<li class="text-muted text-center py-3">No recent quiz session answers found.</li>';
+                return;
+            }
+
+            userAnswers.forEach((answer, i) => {
+                const listItem = document.createElement('li');
+                listItem.className = `review-item ${answer.isCorrect ? 'is-correct' : 'is-incorrect'}`;
+                listItem.innerHTML = `
+                    <div class="font-weight-bold mb-2">Q${i + 1}: ${answer.question}</div>
+                    <div class="text-${answer.isCorrect ? 'success' : 'danger'} mb-1">
+                        <strong>Your Answer:</strong> ${answer.selectedAnswer || '(None)'}
+                    </div>
+                    <div class="text-success mb-1">
+                        <strong>Correct Answer:</strong> ${answer.correctAnswer}
+                    </div>
+                    ${answer.explanation ? `<div class="small text-muted mt-2"><strong>Note:</strong> ${answer.explanation}</div>` : ''}
+                `;
+                questionReview.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
